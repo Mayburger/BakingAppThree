@@ -24,8 +24,6 @@ public class DetailActivity extends AppCompatActivity {
 
         getStepsList();
 
-        Toast.makeText(this, "" + listSteps.get(position).get("stepsDescription"), Toast.LENGTH_SHORT).show();
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setStepsDescription(listSteps.get(position).get("stepsDescription"));

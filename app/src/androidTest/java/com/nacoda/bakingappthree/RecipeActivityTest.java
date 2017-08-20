@@ -94,29 +94,24 @@ public class RecipeActivityTest {
         delay();
         onView(withId(R.id.rvSteps)).check(matches(isDisplayed()));
         onView(withId(R.id.lvIngredients)).check(matches(isDisplayed()));
-        onView(withText("Nutella Pie")).inRoot(withDecorView(not(is(mActivityTestRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
-
         pressBack();
 
         Espresso.onView(ViewMatchers.withId(R.id.rvRecipes)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
         delay();
         onView(withId(R.id.rvSteps)).check(matches(isDisplayed()));
         onView(withId(R.id.lvIngredients)).check(matches(isDisplayed()));
-        onView(withText("Brownies")).inRoot(withDecorView(not(is(mActivityTestRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
         pressBack();
 
         Espresso.onView(ViewMatchers.withId(R.id.rvRecipes)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
         delay();
         onView(withId(R.id.rvSteps)).check(matches(isDisplayed()));
         onView(withId(R.id.lvIngredients)).check(matches(isDisplayed()));
-        onView(withText("Yellow Cake")).inRoot(withDecorView(not(is(mActivityTestRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
         pressBack();
 
         Espresso.onView(ViewMatchers.withId(R.id.rvRecipes)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
         delay();
         onView(withId(R.id.rvSteps)).check(matches(isDisplayed()));
         onView(withId(R.id.lvIngredients)).check(matches(isDisplayed()));
-        onView(withText("Cheesecake")).inRoot(withDecorView(not(is(mActivityTestRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
         pressBack();
     }
 

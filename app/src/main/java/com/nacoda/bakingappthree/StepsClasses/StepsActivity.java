@@ -32,8 +32,6 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
         ButterKnife.inject(this);
         getStepsList();
 
-        Toast.makeText(this, "" + getIntent().getStringExtra("cakeName"), Toast.LENGTH_SHORT).show();
-
         if (findViewById(R.id.tablet_linear_layout) != null) {
             mTwoPane = true;
 
