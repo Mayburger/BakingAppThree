@@ -91,6 +91,7 @@ public class RecipeActivityTest {
     public void recyclerClick() {
         Espresso.onView(ViewMatchers.withId(R.id.rvRecipes)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         delay();
+        delay();
         onView(withId(R.id.rvSteps)).check(matches(isDisplayed()));
         onView(withId(R.id.lvIngredients)).check(matches(isDisplayed()));
         onView(withText("Nutella Pie")).inRoot(withDecorView(not(is(mActivityTestRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
