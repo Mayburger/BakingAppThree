@@ -139,5 +139,4 @@ public class StepsMasterList extends Fragment {
         parcelableRecipe = getActivity().getIntent().getParcelableExtra("parcelableRecipe");
     }
 
-
 }

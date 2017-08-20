@@ -4,7 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frame_detail"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.ghifari.bakingapptwo.DetailClasses.DetailActivity">
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnDetailPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        android:onClick="prevData"
+        android:text="Prev"
+        android:textColor="@color/colorWhite" />
+
+    <Button
+        android:id="@+id/btnDetailNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:background="@color/colorPrimary"
+        android:onClick="nextData"
+        android:text="Next"
+        android:textColor="@color/colorWhite" />
 
 </FrameLayout>

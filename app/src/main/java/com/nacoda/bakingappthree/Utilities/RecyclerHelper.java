@@ -35,6 +35,7 @@ public class RecyclerHelper {
                     IntentPutExtra.stepsPutExtra(gsonRecipe, position, detailIntent);
                     IntentPutExtra.ingredientsPutExtra(gsonRecipe, position, detailIntent);
                     IntentPutExtra.recipePutExtra(gsonRecipe, position, detailIntent);
+                    detailIntent.putExtra("cakeName", gsonRecipe.recipes.get(position).name);
                     mContext.startActivity(detailIntent);
 
 

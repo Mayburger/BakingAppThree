@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -76,6 +77,10 @@ public class RecipeActivity extends AppCompatActivity {
         }
     }
 
+    public void appTitleToast(View view){
+        Toast.makeText(this, "This is the RecipeActivity", Toast.LENGTH_SHORT).show();
+    }
+
     void getData(final Bundle savedInstanceState) {
         rvRecipes.setVisibility(View.GONE);
         swipeRefreshRecipes.setRefreshing(true);
@@ -100,7 +105,6 @@ public class RecipeActivity extends AppCompatActivity {
                 if (savedInstanceState == null) {
                     ErrorHandler.onError(ivError, swipeRefreshRecipes);
                 }
-
             }
         });
 

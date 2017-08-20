@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nacoda.bakingappthree.DetailClasses.DetailActivity;
 import com.nacoda.bakingappthree.DetailClasses.DetailFragment;
@@ -31,6 +32,8 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
         ButterKnife.inject(this);
         getStepsList();
 
+        Toast.makeText(this, "" + getIntent().getStringExtra("cakeName"), Toast.LENGTH_SHORT).show();
+
         if (findViewById(R.id.tablet_linear_layout) != null) {
             mTwoPane = true;
 
@@ -42,7 +45,7 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
                 detailFragment.setStepsDescription(listSteps.get(position).get("stepsDescription"));
                 detailFragment.setVideoURL(listSteps.get(position).get("stepsVideoURL"));
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_detail, detailFragment)
+                        .add(R.id.frame_detail, detailFragment)
                         .commit();
             } else {
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -50,7 +53,7 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
                 detailFragment.setVideoURL(listSteps.get(0).get("stepsVideoURL"));
                 detailFragment.setStepsDescription(listSteps.get(0).get("stepsDescription"));
                 fragmentManager.beginTransaction()
-                        .replace(R.id.frame_detail, detailFragment)
+                        .add(R.id.frame_detail, detailFragment)
                         .commit();
             }
 
@@ -73,8 +76,8 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
                     .commit();
         } else {
             Intent detailIntent = new Intent(getApplicationContext(), DetailActivity.class);
-            detailIntent.putExtra("stepsDescription", listSteps.get(position).get("stepsDescription"));
-            detailIntent.putExtra("stepsVideoURL", listSteps.get(position).get("stepsVideoURL"));
+            detailIntent.putExtra("listSteps", listSteps);
+            detailIntent.putExtra("position", position);
             startActivity(detailIntent);
         }
 
