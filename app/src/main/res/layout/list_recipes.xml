@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvCakeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cake_name"
+                android:textSize="@dimen/text_size_cake_name_phone" />
+
+            <TextView
+                android:id="@+id/tvStepsCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvCakeName"
+                android:text="@string/steps"
+                android:textSize="@dimen/text_size_steps_count_phone" />
+
+            <TextView
+                android:id="@+id/tvIngredientsCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvStepsCount"
+                android:text="@string/ingredients"
+                android:textSize="@dimen/text_size_ingredients_count" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/tvServingsCount"
+                android:layout_alignParentRight="true"
+                android:text="20"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_toLeftOf="@id/tvServingsCount"
+                android:layout_marginRight="@dimen/dimen_8dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/servings" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

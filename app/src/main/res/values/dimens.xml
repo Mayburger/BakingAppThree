@@ -1,0 +1,26 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="error_image">200dp</dimen>
+    <dimen name="text_size_cake_name_phone">24sp</dimen>
+    <dimen name="text_size_steps_count_phone">18sp</dimen>
+    <dimen name="text_size_ingredients_count">12sp</dimen>
+    <dimen name="dimen_8dp">8dp</dimen>
+    <dimen name="dimen_4dp">4dp</dimen>
+    <dimen name="text_size_servings_count_phone">22sp</dimen>
+    <dimen name="text_size_ingredients_ingredient">20sp</dimen>
+    <dimen name="dimen_14dp">14dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_30dp">30dp</dimen>
+    <dimen name="dimen_64">64dp</dimen>
+    <dimen name="text_size_50sp">50sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dimen_2dp">2dp</dimen>
+    <dimen name="dimen_exoplayer_height">250dp</dimen>
+    <dimen name="dimen_16dp">16dp</dimen>
+    <dimen name="errorImageViewLargeWidth">150dp</dimen>
+    <dimen name="errorImageViewLargeHeight">150dp</dimen>
+    <dimen name="dimen_200dp">200dp</dimen>
+    <dimen name="text_size_steps_description">20sp</dimen>
+</resources>
