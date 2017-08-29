@@ -17,13 +17,13 @@ public class IntentPutExtra {
         ArrayList<HashMap<String, String>> listSteps;
         listSteps = new ArrayList<>();
 
-        for (int i = 0; i < gsonRecipe.recipes.get(position).steps.size(); i++) {
+        for (int i = 0; i < gsonRecipe.getRecipes().get(position).getSteps().size(); i++) {
             HashMap<String, String> stepsMap = new HashMap<>();
-            stepsMap.put("stepsId", gsonRecipe.recipes.get(position).steps.get(i).id);
-            stepsMap.put("stepsShortDescription", gsonRecipe.recipes.get(position).steps.get(i).shortDescription);
-            stepsMap.put("stepsDescription", gsonRecipe.recipes.get(position).steps.get(i).description);
-            stepsMap.put("stepsVideoURL", gsonRecipe.recipes.get(position).steps.get(i).videoURL);
-            stepsMap.put("stepsThumbnailURL", gsonRecipe.recipes.get(position).steps.get(i).thumbnailURL);
+            stepsMap.put("stepsId", gsonRecipe.getRecipes().get(position).getSteps().get(i).getId());
+            stepsMap.put("stepsShortDescription", gsonRecipe.getRecipes().get(position).getSteps().get(i).getShortDescription());
+            stepsMap.put("stepsDescription", gsonRecipe.getRecipes().get(position).getSteps().get(i).getDescription());
+            stepsMap.put("stepsVideoURL", gsonRecipe.getRecipes().get(position).getSteps().get(i).getVideoURL());
+            stepsMap.put("stepsThumbnailURL", gsonRecipe.getRecipes().get(position).getSteps().get(i).getThumbnailURL());
             listSteps.add(stepsMap);
             detailIntent.putExtra("listSteps", listSteps);
         }
@@ -36,11 +36,11 @@ public class IntentPutExtra {
         ArrayList<HashMap<String, String>> listIngredients;
         listIngredients = new ArrayList<>();
 
-        for (int i = 0; i < gsonRecipe.recipes.get(position).ingredients.size(); i++) {
+        for (int i = 0; i < gsonRecipe.getRecipes().get(position).getIngredients().size(); i++) {
             HashMap<String, String> ingredientsMap = new HashMap<>();
-            ingredientsMap.put("ingredientsQuantity", gsonRecipe.recipes.get(position).ingredients.get(i).quantity);
-            ingredientsMap.put("ingredientsMeasure", gsonRecipe.recipes.get(position).ingredients.get(i).measure);
-            ingredientsMap.put("ingredientsIngredient", gsonRecipe.recipes.get(position).ingredients.get(i).ingredient);
+            ingredientsMap.put("ingredientsQuantity", gsonRecipe.getRecipes().get(position).getIngredients().get(i).getQuantity());
+            ingredientsMap.put("ingredientsMeasure", gsonRecipe.getRecipes().get(position).getIngredients().get(i).getMeasure());
+            ingredientsMap.put("ingredientsIngredient", gsonRecipe.getRecipes().get(position).getIngredients().get(i).getIngredient());
             listIngredients.add(ingredientsMap);
             detailIntent.putExtra("listIngredients", listIngredients);
         }
@@ -49,9 +49,9 @@ public class IntentPutExtra {
     public static void recipePutExtra(GsonRecipe gsonRecipe, int position, Intent detailIntent) {
 
         ParcelableRecipe parcelableRecipe = new ParcelableRecipe(
-                gsonRecipe.recipes.get(position).id,
-                gsonRecipe.recipes.get(position).name,
-                gsonRecipe.recipes.get(position).servings
+                gsonRecipe.getRecipes().get(position).getId(),
+                gsonRecipe.getRecipes().get(position).getName(),
+                gsonRecipe.getRecipes().get(position).getServings()
         );
 
         detailIntent.putExtra("parcelableRecipe", parcelableRecipe);

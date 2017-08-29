@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.nacoda.bakingappthree.Gson.GsonRecipe;
+import com.nacoda.bakingappthree.Data.Position;
 import com.nacoda.bakingappthree.StepsClasses.StepsActivity;
 
 /**
@@ -30,11 +32,17 @@ public class RecyclerHelper {
                 if (child != null && gestureDetector.onTouchEvent(e)) {
                     int position = rv.getChildAdapterPosition(child);
 
+                    Position widgetPosition = new Position();
+
                     Intent detailIntent = new Intent(mContext, StepsActivity.class);
 
                     IntentPutExtra.stepsPutExtra(gsonRecipe, position, detailIntent);
                     IntentPutExtra.ingredientsPutExtra(gsonRecipe, position, detailIntent);
                     IntentPutExtra.recipePutExtra(gsonRecipe, position, detailIntent);
+
+                    widgetPosition.setPosition(position);
+                    Toast.makeText(mContext, "Widget Id is set to" + gsonRecipe.getRecipes().get(position).getName(), Toast.LENGTH_SHORT).show();
+
                     mContext.startActivity(detailIntent);
 
 

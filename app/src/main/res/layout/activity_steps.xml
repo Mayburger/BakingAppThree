@@ -11,6 +11,7 @@
 
 <!-- Display the static master list fragment -->
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/master_list_fragment"
     android:name="com.nacoda.bakingappthree.StepsClasses.StepsMasterList"
     android:layout_width="match_parent"
@@ -21,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone" />
+
 </fragment>
 
 

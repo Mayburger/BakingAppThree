@@ -3,6 +3,7 @@ package com.nacoda.bakingappthree.StepsClasses;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -108,7 +109,7 @@ public class StepsMasterList extends Fragment {
         return v;
     }
 
-    void setAdapters(){
+    void setAdapters() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -138,5 +139,4 @@ public class StepsMasterList extends Fragment {
     void getParcelableRecipe() {
         parcelableRecipe = getActivity().getIntent().getParcelableExtra("parcelableRecipe");
     }
-
 }

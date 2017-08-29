@@ -69,15 +69,20 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     void rotationHandler(Bundle savedInstanceState) {
+
+
         if (savedInstanceState != null) {
             String response = savedInstanceState.getString("response");
+
+            gsonRecipe = GsonRecipe.GsonBuilder("{recipes:" + response + "}");
+
             tvRotationHandler.setText(response);
-            setRecyclerView(response);
+            setRecyclerView(gsonRecipe);
             ErrorHandler.onSuccess(rvRecipes, ivError, swipeRefreshRecipes);
         }
     }
 
-    public void appTitleToast(View view){
+    public void appTitleToast(View view) {
         Toast.makeText(this, "This is the RecipeActivity", Toast.LENGTH_SHORT).show();
     }
 
@@ -90,8 +95,10 @@ public class RecipeActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 if (response != null) {
+                    gsonRecipe = GsonRecipe.GsonBuilder("{recipes:" + response + "}");
                     tvRotationHandler.setText(response);
-                    setRecyclerView(response);
+                    setRecyclerView(gsonRecipe);
+
                 }
 
                 rotationHandler(savedInstanceState);
@@ -134,10 +141,9 @@ public class RecipeActivity extends AppCompatActivity {
         outState.putString("response", tvRotationHandler.getText().toString());
     }
 
-    void setRecyclerView(String response) {
-        gsonRecipe = GsonRecipe.GsonBuilder("{recipes:" + response + "}");
+    void setRecyclerView(GsonRecipe gsonRecipe) {
         ErrorHandler.onSuccess(rvRecipes, ivError, swipeRefreshRecipes);
-        RecipesAdapter adapter = new RecipesAdapter(gsonRecipe.recipes, RecipeActivity.this);
+        RecipesAdapter adapter = new RecipesAdapter(gsonRecipe.getRecipes(), RecipeActivity.this);
         layoutManagerController();
         RecyclerHelper.recyclerOnClickMain(rvRecipes, RecipeActivity.this, gsonRecipe);
         rvRecipes.setAdapter(adapter);

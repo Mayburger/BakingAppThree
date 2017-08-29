@@ -23,10 +23,10 @@ import butterknife.InjectView;
 public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHolder> {
 
 
-    private List<GsonRecipe.Recipes> recipesData;
+    private List<GsonRecipe.Recipe> recipesData;
     private Context mContext;
 
-    public RecipesAdapter(List<GsonRecipe.Recipes> recipesData, Context mContext) {
+    public RecipesAdapter(List<GsonRecipe.Recipe> recipesData, Context mContext) {
         this.recipesData = recipesData;
         this.mContext = mContext;
     }
@@ -41,10 +41,10 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         /** Set Data **/
-        holder.tvCakeName.setText(recipesData.get(position).name);
-        holder.tvStepsCount.setText(recipesData.get(position).steps.size() + " Steps");
-        holder.tvIngredientsCount.setText(recipesData.get(position).ingredients.size() + " Ingredients Needed");
-        holder.tvServingsCount.setText(recipesData.get(position).servings);
+        holder.tvCakeName.setText(recipesData.get(position).getName());
+        holder.tvStepsCount.setText(recipesData.get(position).getSteps().size() + " Steps");
+        holder.tvIngredientsCount.setText(recipesData.get(position).getIngredients().size() + " Ingredients Needed");
+        holder.tvServingsCount.setText("" + recipesData.get(position).getServings());
 
         /** Set Fonts **/
         Fonts.RobotoBold(mContext, holder.tvCakeName);
