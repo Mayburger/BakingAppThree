@@ -59,6 +59,7 @@ public class RecipeActivity extends AppCompatActivity {
         swipeRefreshRecipes.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                ivError.setVisibility(View.GONE);
                 getData(savedInstanceState);
             }
         });
@@ -70,16 +71,18 @@ public class RecipeActivity extends AppCompatActivity {
 
     void rotationHandler(Bundle savedInstanceState) {
 
-
-        if (savedInstanceState != null) {
-            String response = savedInstanceState.getString("response");
-
-            gsonRecipe = GsonRecipe.GsonBuilder("{recipes:" + response + "}");
-
-            tvRotationHandler.setText(response);
-            setRecyclerView(gsonRecipe);
-            ErrorHandler.onSuccess(rvRecipes, ivError, swipeRefreshRecipes);
+        try {
+            if (savedInstanceState != null) {
+                String response = savedInstanceState.getString("response");
+                gsonRecipe = GsonRecipe.GsonBuilder("{recipes:" + response + "}");
+                tvRotationHandler.setText(response);
+                setRecyclerView(gsonRecipe);
+                ErrorHandler.onSuccess(rvRecipes, ivError, swipeRefreshRecipes);
+            }
+        } catch (Exception e) {
+            ErrorHandler.onError(ivError, swipeRefreshRecipes, this);
         }
+
     }
 
     public void appTitleToast(View view) {
@@ -110,7 +113,7 @@ public class RecipeActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
                 if (savedInstanceState == null) {
-                    ErrorHandler.onError(ivError, swipeRefreshRecipes);
+                    ErrorHandler.onError(ivError, swipeRefreshRecipes, getApplicationContext());
                 }
             }
         });
@@ -139,6 +142,7 @@ public class RecipeActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString("response", tvRotationHandler.getText().toString());
+
     }
 
     void setRecyclerView(GsonRecipe gsonRecipe) {
@@ -147,5 +151,7 @@ public class RecipeActivity extends AppCompatActivity {
         layoutManagerController();
         RecyclerHelper.recyclerOnClickMain(rvRecipes, RecipeActivity.this, gsonRecipe);
         rvRecipes.setAdapter(adapter);
+        ivError.setVisibility(View.GONE);
     }
+
 }

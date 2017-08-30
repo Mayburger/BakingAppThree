@@ -42,6 +42,7 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
                 DetailFragment detailFragment = new DetailFragment();
                 detailFragment.setStepsDescription(listSteps.get(position).get("stepsDescription"));
                 detailFragment.setVideoURL(listSteps.get(position).get("stepsVideoURL"));
+                detailFragment.setThumbnailURL(listSteps.get(position).get("stepsThumbnailURL"));
                 fragmentManager.beginTransaction()
                         .add(R.id.frame_detail, detailFragment)
                         .commit();
@@ -49,6 +50,7 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 DetailFragment detailFragment = new DetailFragment();
                 detailFragment.setVideoURL(listSteps.get(0).get("stepsVideoURL"));
+                detailFragment.setThumbnailURL(listSteps.get(0).get("stepsThumbnailURL"));
                 detailFragment.setStepsDescription(listSteps.get(0).get("stepsDescription"));
                 fragmentManager.beginTransaction()
                         .add(R.id.frame_detail, detailFragment)
@@ -69,6 +71,7 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
             DetailFragment detailFragment = new DetailFragment();
             detailFragment.setStepsDescription(listSteps.get(position).get("stepsDescription"));
             detailFragment.setVideoURL(listSteps.get(position).get("stepsVideoURL"));
+            detailFragment.setThumbnailURL(listSteps.get(position).get("stepsThumbnailURL"));
             fragmentManager.beginTransaction()
                     .replace(R.id.frame_detail, detailFragment)
                     .commit();

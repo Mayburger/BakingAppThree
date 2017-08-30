@@ -9,26 +9,36 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            app:cardCornerRadius="0dp"
             android:layout_height="wrap_content"
+            app:cardCornerRadius="0dp"
             app:cardUseCompatPadding="true">
 
-
-            <TextView
-                android:id="@+id/tvStepsShortDescription"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvIngredientsIngredient"
-                android:layout_centerVertical="true"
-                android:text="@string/ingredientsMeasure"
-                android:layout_margin="25dp"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivStepsThumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_200dp" />
+
+                <TextView
+                    android:id="@+id/tvStepsShortDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvIngredientsIngredient"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="25dp"
+                    android:text="@string/ingredientsMeasure"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
 

@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
 import com.nacoda.bakingappthree.R;
 import com.nacoda.bakingappthree.Utilities.Fonts;
 
@@ -44,6 +46,11 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
 
         /** Set Data and Fonts **/
         holder.tvStepsShortDescription.setText(listSteps.get(position).get("stepsShortDescription"));
+        Glide.with(mContext).load(listSteps.get(position).get("stepsThumbnailURL"))
+                .fitCenter()
+                .centerCrop()
+                .placeholder(R.drawable.error_image)
+                .into(holder.ivStepsThumbnail);
         Fonts.RobotoMedium(mContext, holder.tvStepsShortDescription);
     }
 
@@ -59,6 +66,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
          **/
         @InjectView(R.id.tvStepsShortDescription)
         TextView tvStepsShortDescription;
+        @InjectView(R.id.ivStepsThumbnail)
+        ImageView ivStepsThumbnail;
 
         public ViewHolder(View itemView) {
             super(itemView);

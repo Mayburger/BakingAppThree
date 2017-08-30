@@ -39,6 +39,7 @@ public class DetailFragment extends Fragment {
     SimpleExoPlayerView playerView;
     String stepsDescription;
     String videoURL;
+    String thumbnailURL;
     SimpleExoPlayer player;
 
     static final String PLAY_WHEN_READY_KEY = "PLAY_WHEN_READY";
@@ -71,8 +72,6 @@ public class DetailFragment extends Fragment {
 
         Fonts.RobotoMedium(getActivity(), tvStepsDescription);
         tvStepsDescription.setText(stepsDescription);
-
-
         return v;
     }
 
@@ -82,6 +81,10 @@ public class DetailFragment extends Fragment {
 
     public void setVideoURL(String videoURL) {
         this.videoURL = videoURL;
+    }
+
+    public void setThumbnailURL(String thumbnailURL) {
+        this.thumbnailURL = thumbnailURL;
     }
 
     private void initializePlayer() {
@@ -102,7 +105,6 @@ public class DetailFragment extends Fragment {
             MediaSource mediaSource = buildMediaSource(uri);
             player.prepare(mediaSource, true, false);
         }
-
 
     }
 

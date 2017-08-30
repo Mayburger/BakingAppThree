@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName;
 public class GsonRecipe {
 
     @SerializedName("recipes")
-    private List<Recipe> mRecipes;
+    public  List<Recipe> mRecipes;
 
     public List<Recipe> getRecipes() {
         return mRecipes;

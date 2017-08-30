@@ -28,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setStepsDescription(listSteps.get(position).get("stepsDescription"));
         detailFragment.setVideoURL(listSteps.get(position).get("stepsVideoURL"));
+        detailFragment.setThumbnailURL(listSteps.get(position).get("stepsThumbnailURL"));
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_detail, detailFragment)
                 .commit();
