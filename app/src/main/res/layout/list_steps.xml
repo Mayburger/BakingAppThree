@@ -20,22 +20,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/ivStepsThumbnail"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_200dp" />
+                <RelativeLayout
+                    android:layout_width="@dimen/dimen_30dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:layout_gravity="center_vertical|center_horizontal">
+
+                    <TextView
+                        android:id="@+id/tvStepsNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/colorWhite" />
+
+                </RelativeLayout>
+
 
                 <TextView
                     android:id="@+id/tvStepsShortDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvIngredientsIngredient"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="25dp"
+                    android:layout_margin="@dimen/dimen_16dp"
                     android:text="@string/ingredientsMeasure"
-                    android:textAlignment="center"
                     android:textSize="20sp" />
 
             </LinearLayout>

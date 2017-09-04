@@ -3,6 +3,7 @@ package com.nacoda.bakingappthree.StepsClasses;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,7 +40,7 @@ public class StepsMasterList extends Fragment {
 
     ArrayList<HashMap<String, String>> listSteps, listIngredients;
     ParcelableRecipe parcelableRecipe;
-
+    LinearLayoutManager linearLayoutManager;
     onPositionSelected mCallback;
 
     // onPositionSelected interface, calls a method in the host activity named mPositionSelected
@@ -110,7 +111,7 @@ public class StepsMasterList extends Fragment {
     }
 
     void setAdapters() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(listIngredients, getActivity());
@@ -138,5 +139,35 @@ public class StepsMasterList extends Fragment {
 
     void getParcelableRecipe() {
         parcelableRecipe = getActivity().getIntent().getParcelableExtra("parcelableRecipe");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        View v = lvIngredients.getChildAt(0);
+        int top = (v == null) ? 0 : (v.getTop() - lvIngredients.getPaddingTop());
+
+        int recyclerIndex = linearLayoutManager.findFirstVisibleItemPosition();
+        View startView = rvSteps.getChildAt(0);
+        int recyclerTop = (startView == null) ? 0 : (startView.getTop() - rvSteps.getPaddingTop());
+
+        savedInstanceState.putInt("recyclerIndex", recyclerIndex);
+        savedInstanceState.putInt("recyclerTop", recyclerTop);
+        savedInstanceState.putInt("listIndex", lvIngredients.getFirstVisiblePosition());
+        savedInstanceState.putInt("listTop", top);
+
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            lvIngredients.setSelectionFromTop(savedInstanceState.getInt("listIndex"), savedInstanceState.getInt("listTop"));
+            linearLayoutManager.scrollToPositionWithOffset(savedInstanceState.getInt("recyclerIndex"), savedInstanceState.getInt("recyclerTop"));
+        }
+
     }
 }

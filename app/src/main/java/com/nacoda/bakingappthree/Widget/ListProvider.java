@@ -1,18 +1,12 @@
 package com.nacoda.bakingappthree.Widget;
 
-import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService.RemoteViewsFactory;
 
-import com.nacoda.bakingappthree.Adapters.RecipesAdapter;
-import com.nacoda.bakingappthree.Data.StaticData;
 import com.nacoda.bakingappthree.Gson.GsonRecipe;
 import com.nacoda.bakingappthree.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * If you are familiar with Adapter of ListView,this is the same as adapter
@@ -52,7 +46,7 @@ public class ListProvider implements RemoteViewsFactory {
     @Override
     public RemoteViews getViewAt(int position) {
         final RemoteViews remoteView = new RemoteViews(
-                context.getPackageName(), R.layout.list_row);
+                context.getPackageName(), R.layout.list_widget);
 
             if (dataPosition != 0) {
                 remoteView.setTextViewText(R.id.heading, gsonRecipe.getRecipes().get(dataPosition).getIngredients().get(position).getIngredient());

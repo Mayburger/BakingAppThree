@@ -1,9 +1,10 @@
 package com.nacoda.bakingappthree.DetailClasses;
 
 
-import android.annotation.SuppressLint;
+import  android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class DetailFragment extends Fragment {
     String stepsDescription;
     String videoURL;
     String thumbnailURL;
+    String url;
     SimpleExoPlayer player;
 
     static final String PLAY_WHEN_READY_KEY = "PLAY_WHEN_READY";
@@ -64,12 +66,6 @@ public class DetailFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_detail, container, false);
         ButterKnife.inject(this, v);
 
-        if (savedInstanceState != null) {
-            playWhenReady = savedInstanceState.getBoolean(PLAY_WHEN_READY_KEY);
-            currentWindow = savedInstanceState.getInt(CURRENT_WINDOW_KEY);
-            playBackPosition = savedInstanceState.getLong(PLAY_BACK_POSITION_KEY);
-        }
-
         Fonts.RobotoMedium(getActivity(), tvStepsDescription);
         tvStepsDescription.setText(stepsDescription);
         return v;
@@ -92,7 +88,15 @@ public class DetailFragment extends Fragment {
                 new DefaultRenderersFactory(getActivity()),
                 new DefaultTrackSelector(), new DefaultLoadControl());
 
-        if (videoURL.equals("")) {
+        if (videoURL != null) {
+            url = videoURL;
+        } else if (thumbnailURL != null) {
+            url = thumbnailURL;
+        } else {
+            url = "";
+        }
+
+        if (url.equals("")) {
             playerView.setVisibility(View.GONE);
         } else {
             playerView.setVisibility(View.VISIBLE);
@@ -101,7 +105,7 @@ public class DetailFragment extends Fragment {
             player.setPlayWhenReady(playWhenReady);
             player.seekTo(currentWindow, playBackPosition);
 
-            Uri uri = Uri.parse(videoURL);
+            Uri uri = Uri.parse(url);
             MediaSource mediaSource = buildMediaSource(uri);
             player.prepare(mediaSource, true, false);
         }
@@ -142,35 +146,34 @@ public class DetailFragment extends Fragment {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        if (Util.SDK_INT <= 23) {
-            releasePlayer();
-        }
-    }
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (Util.SDK_INT > 23) {
-            releasePlayer();
-        }
-    }
-
-    private void releasePlayer() {
         if (player != null) {
             playBackPosition = player.getCurrentPosition();
             currentWindow = player.getCurrentWindowIndex();
             playWhenReady = player.getPlayWhenReady();
             player.release();
             player = null;
+
+            savedInstanceState.putBoolean(PLAY_WHEN_READY_KEY, playWhenReady);
+            savedInstanceState.putInt(CURRENT_WINDOW_KEY, currentWindow);
+            savedInstanceState.putLong(PLAY_BACK_POSITION_KEY, playBackPosition);
         }
+
+
+
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean(PLAY_WHEN_READY_KEY, playWhenReady);
-        outState.putInt(CURRENT_WINDOW_KEY, currentWindow);
-        outState.putLong(PLAY_BACK_POSITION_KEY, playBackPosition);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            playWhenReady = savedInstanceState.getBoolean(PLAY_WHEN_READY_KEY);
+            currentWindow = savedInstanceState.getInt(CURRENT_WINDOW_KEY);
+            playBackPosition = savedInstanceState.getLong(PLAY_BACK_POSITION_KEY);
+        }
+
     }
 }

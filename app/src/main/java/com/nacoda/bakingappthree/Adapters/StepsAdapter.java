@@ -46,12 +46,9 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
 
         /** Set Data and Fonts **/
         holder.tvStepsShortDescription.setText(listSteps.get(position).get("stepsShortDescription"));
-        Glide.with(mContext).load(listSteps.get(position).get("stepsThumbnailURL"))
-                .fitCenter()
-                .centerCrop()
-                .placeholder(R.drawable.error_image)
-                .into(holder.ivStepsThumbnail);
-        Fonts.RobotoMedium(mContext, holder.tvStepsShortDescription);
+        holder.tvStepsNumber.setText("" + (position + 1));
+        Fonts.RobotoRegular(mContext, holder.tvStepsShortDescription);
+        Fonts.RobotoLight(mContext, holder.tvStepsNumber);
     }
 
     @Override
@@ -66,8 +63,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
          **/
         @InjectView(R.id.tvStepsShortDescription)
         TextView tvStepsShortDescription;
-        @InjectView(R.id.ivStepsThumbnail)
-        ImageView ivStepsThumbnail;
+        @InjectView(R.id.tvStepsNumber)
+        TextView tvStepsNumber;
 
         public ViewHolder(View itemView) {
             super(itemView);

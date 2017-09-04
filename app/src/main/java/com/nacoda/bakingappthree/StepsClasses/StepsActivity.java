@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nacoda.bakingappthree.DetailClasses.DetailActivity;
 import com.nacoda.bakingappthree.DetailClasses.DetailFragment;
 import com.nacoda.bakingappthree.R;
+import com.nacoda.bakingappthree.Utilities.Fonts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +26,8 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
     private ArrayList<HashMap<String, String>> listSteps;
     @InjectView(R.id.tvPositionHandler)
     TextView tvPositionHandler;
+    @InjectView(R.id.tvStepsTitle)
+    TextView tvStepsTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,9 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
         setContentView(R.layout.activity_steps);
         ButterKnife.inject(this);
         getStepsList();
+
+        Fonts.Montez(this, tvStepsTitle);
+
 
         if (findViewById(R.id.tablet_linear_layout) != null) {
             mTwoPane = true;
@@ -92,5 +99,8 @@ public class StepsActivity extends AppCompatActivity implements StepsMasterList.
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString("position", tvPositionHandler.getText().toString());
     }
-}
 
+    public void backSteps(View view) {
+        finish();
+    }
+}

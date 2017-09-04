@@ -23,4 +23,5 @@
     <dimen name="errorImageViewLargeHeight">150dp</dimen>
     <dimen name="dimen_200dp">200dp</dimen>
     <dimen name="text_size_steps_description">20sp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
 </resources>
