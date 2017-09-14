@@ -9,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -38,6 +40,8 @@ public class DetailFragment extends Fragment {
     TextView tvStepsDescription;
     @InjectView(R.id.video_view)
     SimpleExoPlayerView playerView;
+    @InjectView(R.id.thumbnail_view)
+    ImageView thumbnail_view;
     String stepsDescription;
     String videoURL;
     String thumbnailURL;
@@ -94,12 +98,17 @@ public class DetailFragment extends Fragment {
         player.setPlayWhenReady(playWhenReady);
         player.seekTo(currentWindow, playbackPosition);
 
-        if (videoURL == null) {
+        if (videoURL == null){
             playerView.setVisibility(View.GONE);
+            if (thumbnailURL == null){
+                thumbnail_view.setVisibility(View.GONE);
+            } else {
+                Glide.with(getActivity()).load(thumbnailURL).into(thumbnail_view);
+            }
         } else {
             Uri uri = Uri.parse(videoURL);
             MediaSource mediaSource = buildMediaSource(uri);
-            player.prepare(mediaSource, true, false);
+            player.prepare(mediaSource,true,false);
         }
     }
 
