@@ -3,6 +3,7 @@ package com.nacoda.bakingappthree.StepsClasses;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -42,6 +43,7 @@ public class StepsMasterList extends Fragment {
     ParcelableRecipe parcelableRecipe;
     LinearLayoutManager linearLayoutManager;
     onPositionSelected mCallback;
+    Parcelable mListState;
 
     // onPositionSelected interface, calls a method in the host activity named mPositionSelected
     interface onPositionSelected {
@@ -141,21 +143,18 @@ public class StepsMasterList extends Fragment {
         parcelableRecipe = getActivity().getIntent().getParcelableExtra("parcelableRecipe");
     }
 
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
 
         View v = lvIngredients.getChildAt(0);
         int top = (v == null) ? 0 : (v.getTop() - lvIngredients.getPaddingTop());
-
-        int recyclerIndex = linearLayoutManager.findFirstVisibleItemPosition();
-        View startView = rvSteps.getChildAt(0);
-        int recyclerTop = (startView == null) ? 0 : (startView.getTop() - rvSteps.getPaddingTop());
-
-        savedInstanceState.putInt("recyclerIndex", recyclerIndex);
-        savedInstanceState.putInt("recyclerTop", recyclerTop);
         savedInstanceState.putInt("listIndex", lvIngredients.getFirstVisiblePosition());
         savedInstanceState.putInt("listTop", top);
+
+        mListState = linearLayoutManager.onSaveInstanceState();
+        savedInstanceState.putParcelable("recyclerState", mListState);
 
 
     }
@@ -166,7 +165,16 @@ public class StepsMasterList extends Fragment {
 
         if (savedInstanceState != null) {
             lvIngredients.setSelectionFromTop(savedInstanceState.getInt("listIndex"), savedInstanceState.getInt("listTop"));
-            linearLayoutManager.scrollToPositionWithOffset(savedInstanceState.getInt("recyclerIndex"), savedInstanceState.getInt("recyclerTop"));
+            mListState = savedInstanceState.getParcelable("recyclerState");
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (mListState != null) {
+            linearLayoutManager.onRestoreInstanceState(mListState);
         }
 
     }

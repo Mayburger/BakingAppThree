@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@android:color/black" >
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:textSize="14sp"
-        android:textStyle="bold" 
-        android:text="Heading"/>
 
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/heading"
-        android:layout_marginTop="5dip"
-        android:textSize="14sp"
-        android:text="Content"/>
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen_20dp"
+        android:paddingBottom="@dimen/dimen_20dp"
+        android:paddingLeft="@dimen/dimen_14dp"
+        android:paddingRight="@dimen/dimen_14dp">
+
+        <TextView
+            android:id="@+id/tvIngredientsWidget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textColor="@color/colorBlack"
+            android:text="@string/ingredientsIngredient"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvMeasureWidget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvIngredientsWidget"
+            android:text="@string/ingredientsMeasure"
+            android:textColor="@color/colorBlack"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tvQuantityWidget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="20"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_4dp"
+            android:layout_toLeftOf="@id/tvQuantityWidget"
+            android:src="@drawable/ingredient" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

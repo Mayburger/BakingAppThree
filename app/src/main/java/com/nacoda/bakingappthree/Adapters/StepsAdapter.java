@@ -1,6 +1,10 @@
 package com.nacoda.bakingappthree.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +14,8 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.nacoda.bakingappthree.R;
 import com.nacoda.bakingappthree.Utilities.Fonts;
 
@@ -49,6 +55,20 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
         holder.tvStepsNumber.setText("" + (position + 1));
         Fonts.RobotoRegular(mContext, holder.tvStepsShortDescription);
         Fonts.RobotoLight(mContext, holder.tvStepsNumber);
+
+        if (listSteps.get(position).get("stepsThumbnailURL") != null) {
+            Glide.with(mContext).load(listSteps.get(position).get("stepsThumbnailURL")).asBitmap().into(new SimpleTarget<Bitmap>(200, 200) {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    Drawable drawable = new BitmapDrawable(resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        holder.ivThumbnailSteps.setBackground(drawable);
+                    }
+                }
+            });
+        }
+
+
     }
 
     @Override
@@ -65,6 +85,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
         TextView tvStepsShortDescription;
         @InjectView(R.id.tvStepsNumber)
         TextView tvStepsNumber;
+        @InjectView(R.id.ivThumbnailSteps)
+        ImageView ivThumbnailSteps;
 
         public ViewHolder(View itemView) {
             super(itemView);

@@ -11,19 +11,6 @@ public class ParcelableRecipe implements Parcelable {
 
     private String id;
     private String name;
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setServings(String servings) {
-        this.servings = servings;
-    }
-
     private String servings;
 
     public String getId() {
@@ -55,6 +42,9 @@ public class ParcelableRecipe implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.name);
         dest.writeString(this.servings);
+    }
+
+    public ParcelableRecipe() {
     }
 
     protected ParcelableRecipe(Parcel in) {

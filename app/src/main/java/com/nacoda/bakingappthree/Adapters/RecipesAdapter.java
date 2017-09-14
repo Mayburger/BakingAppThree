@@ -1,12 +1,20 @@
 package com.nacoda.bakingappthree.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.nacoda.bakingappthree.Gson.GsonRecipe;
 import com.nacoda.bakingappthree.R;
 import com.nacoda.bakingappthree.Utilities.Fonts;
@@ -52,6 +60,18 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         Fonts.RobotoLight(mContext, holder.tvIngredientsCount);
         Fonts.RobotoRegular(mContext, holder.tvServingsCount);
 
+        if (recipesData.get(position).getImage() != null) {
+            Glide.with(mContext).load(recipesData.get(position).getImage()).asBitmap().into(new SimpleTarget<Bitmap>(200, 200) {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    Drawable drawable = new BitmapDrawable(resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        holder.ivThumbnailRecipes.setBackground(drawable);
+                    }
+                }
+            });
+        }
+
 
     }
 
@@ -74,6 +94,8 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         TextView tvIngredientsCount;
         @InjectView(R.id.tvServingsCount)
         TextView tvServingsCount;
+        @InjectView(R.id.ivThumbnailRecipes)
+        ImageView ivThumbnailRecipes;
 
         public ViewHolder(View itemView) {
             super(itemView);

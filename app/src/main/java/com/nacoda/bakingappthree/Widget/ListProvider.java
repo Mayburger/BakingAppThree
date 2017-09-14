@@ -49,11 +49,13 @@ public class ListProvider implements RemoteViewsFactory {
                 context.getPackageName(), R.layout.list_widget);
 
             if (dataPosition != 0) {
-                remoteView.setTextViewText(R.id.heading, gsonRecipe.getRecipes().get(dataPosition).getIngredients().get(position).getIngredient());
-                remoteView.setTextViewText(R.id.content, gsonRecipe.getRecipes().get(dataPosition).getIngredients().get(position).getQuantity());
+                remoteView.setTextViewText(R.id.tvIngredientsWidget, gsonRecipe.getRecipes().get(dataPosition).getIngredients().get(position).getIngredient());
+                remoteView.setTextViewText(R.id.tvMeasureWidget, gsonRecipe.getRecipes().get(dataPosition).getIngredients().get(position).getMeasure());
+                remoteView.setTextViewText(R.id.tvQuantityWidget, gsonRecipe.getRecipes().get(dataPosition).getIngredients().get(position).getQuantity());
             } else {
-                remoteView.setTextViewText(R.id.heading, gsonRecipe.getRecipes().get(0).getIngredients().get(position).getIngredient());
-                remoteView.setTextViewText(R.id.content, gsonRecipe.getRecipes().get(0).getIngredients().get(position).getQuantity());
+                remoteView.setTextViewText(R.id.tvIngredientsWidget, gsonRecipe.getRecipes().get(0).getIngredients().get(position).getIngredient());
+                remoteView.setTextViewText(R.id.tvMeasureWidget, gsonRecipe.getRecipes().get(0).getIngredients().get(position).getMeasure());
+                remoteView.setTextViewText(R.id.tvQuantityWidget, gsonRecipe.getRecipes().get(0).getIngredients().get(position).getQuantity());
             }
 
 
